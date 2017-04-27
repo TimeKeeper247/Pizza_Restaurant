@@ -1,10 +1,10 @@
 package asgn2Pizzas;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import asgn2Exceptions.PizzaException;
-
-
 
 /**
  * 
@@ -16,7 +16,10 @@ import asgn2Exceptions.PizzaException;
  *
  */
 public class MargheritaPizza extends Pizza {
-
+	
+	private int quantity;
+	private LocalTime orderTime, deliveryTime;
+	private List<PizzaTopping> topping;
 	
 	/**
 	 * 
@@ -35,7 +38,13 @@ public class MargheritaPizza extends Pizza {
 	 *
 	 */
 	public MargheritaPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
-		// TO DO
+		// TODO
+		this.quantity = quantity;
+		this.orderTime = orderTime;
+		this.deliveryTime = deliveryTime;
+		topping = new ArrayList<PizzaTopping>(2);
+		topping.add(PizzaTopping.TOMATO);
+		topping.add(PizzaTopping.CHEESE);
 	}
 
 }

@@ -14,6 +14,8 @@ import asgn2Exceptions.PizzaException;
  */
 
 public class PizzaFactory {
+	
+	private static Pizza pizza;
 
 
 	/**
@@ -29,7 +31,15 @@ public class PizzaFactory {
 	 * @return A valid Pizza object using the specified parameters 
 	 * */
 	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{
-		// TO DO
+		// TODO
+		if (pizzaCode == "PZM"){
+			pizza = new MargheritaPizza(quantity, orderTime, deliveryTime);
+		} else if (pizzaCode == "PZV"){
+			pizza = new VegetarianPizza(quantity, orderTime, deliveryTime);
+		} else {
+			pizza = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+		}
+		return pizza;
 	}
 
 }
