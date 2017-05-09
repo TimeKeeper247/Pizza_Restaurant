@@ -36,7 +36,7 @@ public class PizzaFactory {
 			pizza = new MargheritaPizza(quantity, orderTime, deliveryTime);
 		} else if (pizzaCode == "PZV"){
 			pizza = new VegetarianPizza(quantity, orderTime, deliveryTime);
-		} else {
+		} else if (pizzaCode == "PZL"){
 			pizza = new MeatLoversPizza(quantity, orderTime, deliveryTime);
 		}
 		return pizza;

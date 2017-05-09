@@ -32,7 +32,9 @@ public class PizzaRestaurant {
 	 * 
 	 */
 	public PizzaRestaurant() {
-		// TO DO
+		// TODO
+		customers = new ArrayList<Customer>();
+		pizzas = new ArrayList<Pizza>();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public class PizzaRestaurant {
 	 * @throws CustomerException if index is invalid.
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
-		// TO DO
+		// TODO
 	}
 	
 	/**
@@ -71,7 +73,8 @@ public class PizzaRestaurant {
 	 * @throws PizzaException if index is invalid.
 	 */	
 	public Pizza getPizzaByIndex(int index) throws PizzaException{
-		// TO DO
+		// TODO
+		return pizzas.get(index);
 	}
 	
 	/**
@@ -81,7 +84,8 @@ public class PizzaRestaurant {
 	 * @return the number of objects contained in the pizzas field.
 	 */
 	public int getNumPizzaOrders(){
-		// TO DO
+		// TODO
+		return pizzas.size();
 	}
 
 	/**
@@ -111,7 +115,12 @@ public class PizzaRestaurant {
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
 	public double getTotalProfit(){
-		// TO DO
+		// TODO
+		double profit = 0;
+		for (Pizza pizza : pizzas){
+			profit += pizza.getOrderProfit();
+		}
+		return profit;
 	}
 	
 	/**

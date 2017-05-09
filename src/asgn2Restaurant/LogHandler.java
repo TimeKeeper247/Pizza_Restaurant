@@ -1,12 +1,16 @@
 package asgn2Restaurant;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import asgn2Customers.Customer;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Pizzas.PizzaFactory;
 
 /**
  *
@@ -42,7 +46,17 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
-		// TO DO
+		// TODO
+		Pizza pizza;
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		BufferedReader br = new BufferedReader(new FileReader(filename));
+		String line = br.readLine();
+		while(line != null){
+			pizza = createPizza(line);
+			pizzas.add(pizza);
+			line = br.readLine();
+		}
+		return pizzas;
 	}		
 
 	
@@ -67,7 +81,15 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		// TO DO		
+		// TODO
+		Pizza pizza;
+		String[] p_array = line.split(",");
+		LocalTime o_time = LocalTime.parse(p_array[0]);
+		LocalTime d_time = LocalTime.parse(p_array[1]);
+		String p_code = p_array[7];
+		int p_num = Integer.parseInt(p_array[8]);
+		pizza = PizzaFactory.getPizza(p_code, p_num, o_time, d_time);
+		return pizza;
 	}
 
 }
