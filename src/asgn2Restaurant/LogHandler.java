@@ -1,8 +1,12 @@
 package asgn2Restaurant;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
@@ -31,6 +35,19 @@ public class LogHandler {
 	 */
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
 		// TO DO
+		ArrayList<Customer> customerList = new ArrayList<>();
+
+	       try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+	           String line;
+
+	           while ((line = br.readLine()) != null) {
+	               customerList.add(createCustomer(line));
+	           }
+
+	       } catch (IOException ex) {
+	           throw new LogHandlerException("There was a problem with the log file " + filename);
+	       }
+	       return customerList;
 	}		
 
 	/**
@@ -56,6 +73,15 @@ public class LogHandler {
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
 		// TO DO
+        String[] record = line.split(",");
+
+        String customerName = record[2];
+        String mobileNumber = record[3];
+        String customerCode = record[4];
+        int locationX = Integer.valueOf(record[5]);
+        int locationY = Integer.valueOf(record[6]);
+
+        return CustomerFactory.getCustomer(customerCode, customerName, mobileNumber, locationX, locationY);
 	}
 	
 	/**

@@ -33,6 +33,8 @@ public class PizzaRestaurant {
 	 */
 	public PizzaRestaurant() {
 		// TO DO
+        customers = new ArrayList<>();
+        pizzas = new ArrayList<>();
 	}
 
 	/**
@@ -52,6 +54,13 @@ public class PizzaRestaurant {
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
 		// TO DO
+		try {
+			customers = LogHandler.populateCustomerDataset(filename);
+			pizzas = LogHandler.populatePizzaDataset(filename);
+		} catch (Exception ex) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -62,6 +71,7 @@ public class PizzaRestaurant {
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
 		// TO DO
+        return customers.get(index);
 	}
 	
 	/**
@@ -92,6 +102,7 @@ public class PizzaRestaurant {
 	 */
 	public int getNumCustomerOrders(){
 		// TO DO
+        return customers.size();
 	}
 
 			
@@ -103,6 +114,13 @@ public class PizzaRestaurant {
 	 */
 	public double getTotalDeliveryDistance(){
 		// TO DO
+	    double totalDeliveryDistance = 0;
+
+        for (Customer customer : customers) {
+            totalDeliveryDistance += customer.getDeliveryDistance();
+        }
+
+        return totalDeliveryDistance;
 	}
 
 	/**
@@ -122,6 +140,8 @@ public class PizzaRestaurant {
 	 */
 	public void resetDetails(){
 		// TO DO
+        customers = new ArrayList<>();
+        pizzas = new ArrayList<>();
 	}
 
 }
