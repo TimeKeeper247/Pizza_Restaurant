@@ -38,6 +38,8 @@ public class PizzaFactory {
 			pizza = new VegetarianPizza(quantity, orderTime, deliveryTime);
 		} else if (pizzaCode == "PZL"){
 			pizza = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+		} else {
+			throw new PizzaException("That is not a valid pizza code");
 		}
 		return pizza;
 	}

@@ -3,6 +3,7 @@ package asgn2Restaurant;
 import java.util.ArrayList;
 
 import asgn2Customers.Customer;
+import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
 
 /**
@@ -63,7 +64,7 @@ public class PizzaRestaurant {
 	 * @throws CustomerException if index is invalid.
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
-		// TODO
+		// TO DO
 	}
 	
 	/**
@@ -74,7 +75,11 @@ public class PizzaRestaurant {
 	 */	
 	public Pizza getPizzaByIndex(int index) throws PizzaException{
 		// TODO
-		return pizzas.get(index);
+		if (index >= this.getNumPizzaOrders() || index < 0){
+			throw new PizzaException("Index is invalid");
+		} else {
+			return pizzas.get(index);
+		}
 	}
 	
 	/**

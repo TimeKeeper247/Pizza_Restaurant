@@ -39,9 +39,21 @@ public class MargheritaPizza extends Pizza {
 	 */
 	public MargheritaPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
 		// TODO
-		this.quantity = quantity;
-		this.orderTime = orderTime;
-		this.deliveryTime = deliveryTime;
+		if (quantity < 1 || quantity > 10){
+//			throw new PizzaException("Quantity of pizzas must be at least 1");
+		} else {
+			this.quantity = quantity;
+		}
+		if (orderTime.isAfter(LocalTime.parse("23:00:00")) && orderTime.isBefore(LocalTime.parse("07:00:00"))){
+//			throw new PizzaException("Cannot order during this time");
+		} else {
+			this.orderTime = orderTime;
+		}
+		if (deliveryTime.minusHours(1).equals(orderTime) || deliveryTime.minusHours(1).isAfter(orderTime)){
+//			throw new PizzaException("Pizza has taken up to or more than 1 hour. It must be thrown out");
+		} else {
+			this.deliveryTime = deliveryTime;
+			
 		topping = new ArrayList<PizzaTopping>(2);
 		topping.add(PizzaTopping.TOMATO);
 		topping.add(PizzaTopping.CHEESE);

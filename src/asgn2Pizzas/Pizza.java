@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import asgn2Exceptions.PizzaException;
+
 
 /**
  * An abstract class that represents pizzas sold at the Pizza Palace restaurant. 
@@ -41,7 +43,11 @@ public abstract class Pizza  {
 	 */
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
 		// TODO
-		this.quantity = quantity;
+//		if (quantity < 1 || quantity > 10){
+//			throw new PizzaException("Quantity of pizzas must be at least 1 and at most 10");
+//		} else {
+			this.quantity = quantity;
+		//}
 		this.price = price;
 		this.type = type;
 		this.orderTime = orderTime;
