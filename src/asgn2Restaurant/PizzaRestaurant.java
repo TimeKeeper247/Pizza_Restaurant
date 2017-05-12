@@ -33,9 +33,15 @@ public class PizzaRestaurant {
 	 * 
 	 */
 	public PizzaRestaurant() {
+<<<<<<< HEAD
 		// TODO
 		customers = new ArrayList<Customer>();
 		pizzas = new ArrayList<Pizza>();
+=======
+		// TO DO
+        customers = new ArrayList<>();
+        pizzas = new ArrayList<>();
+>>>>>>> branch 'master' of https://timekeeper247@bitbucket.org/timekeeper247/cab302_asgn2.git
 	}
 
 	/**
@@ -55,6 +61,13 @@ public class PizzaRestaurant {
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
 		// TO DO
+		try {
+			customers = LogHandler.populateCustomerDataset(filename);
+			pizzas = LogHandler.populatePizzaDataset(filename);
+		} catch (Exception ex) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -65,6 +78,7 @@ public class PizzaRestaurant {
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
 		// TO DO
+        return customers.get(index);
 	}
 	
 	/**
@@ -101,6 +115,7 @@ public class PizzaRestaurant {
 	 */
 	public int getNumCustomerOrders(){
 		// TO DO
+        return customers.size();
 	}
 
 			
@@ -112,6 +127,13 @@ public class PizzaRestaurant {
 	 */
 	public double getTotalDeliveryDistance(){
 		// TO DO
+	    double totalDeliveryDistance = 0;
+
+        for (Customer customer : customers) {
+            totalDeliveryDistance += customer.getDeliveryDistance();
+        }
+
+        return totalDeliveryDistance;
 	}
 
 	/**
@@ -136,6 +158,8 @@ public class PizzaRestaurant {
 	 */
 	public void resetDetails(){
 		// TO DO
+        customers = new ArrayList<>();
+        pizzas = new ArrayList<>();
 	}
 
 }

@@ -1,6 +1,7 @@
 package asgn2Customers;
 
 import asgn2Exceptions.CustomerException;
+import constants.Constants;
 
 /** A class that represents a customer that has chosen to have their pizza delivered by a drone. 
  * This class extends the abstract Customer class and calculates the delivery distance as the Euclidean 
@@ -29,7 +30,8 @@ public class DroneDeliveryCustomer extends Customer {
 	 * 
 	 */
 	public DroneDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
-		// TO DO		
+		// TO DO
+		super(name, mobileNumber, locationX, locationY, Constants.DRONE_DELIVERY_CUSTOMER);
 	}
 
 	/**
@@ -41,8 +43,7 @@ public class DroneDeliveryCustomer extends Customer {
 	@Override
 	public double getDeliveryDistance() {
 		// TO DO
-
+		double fullDistance = Math.sqrt((Math.pow(getLocationX() - getRestaurantLocationX(), 2)) + Math.pow(getLocationY() - getRestaurantLocationY(), 2));
+		return round(fullDistance);
 	}
-	
-
 }

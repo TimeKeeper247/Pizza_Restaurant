@@ -1,6 +1,7 @@
 package asgn2Customers;
 
 import asgn2Exceptions.CustomerException;
+import constants.Constants;
 
 /** An abstract class to represent a customer at the Pizza Palace restaurant.
  *  The Customer class is used as a base class of PickUpCustomer, 
@@ -11,6 +12,15 @@ import asgn2Exceptions.CustomerException;
  * @author Person B
 */
 public abstract class Customer {
+
+    private String name;
+    private String mobileNumber;
+    private int locationX;
+    private int locationY;
+    private String type;
+
+    private int restaurantLocationX = 0;
+    private int restaurantLocationY = 0;
 
 
 	/**
@@ -32,6 +42,10 @@ public abstract class Customer {
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
 		// TO DO
+		setName(name);
+		setMobileNumber(mobileNumber);
+		setLocations(locationX, locationY);
+		setType(type);
 	}
 	
 	/**
@@ -40,6 +54,7 @@ public abstract class Customer {
 	 */
 	public final String getName(){
 		// TO DO
+		return this.name;
 	}
 	
 	/**
@@ -48,6 +63,7 @@ public abstract class Customer {
 	 */
 	public final String getMobileNumber(){
 		// TO DO
+		return this.mobileNumber;
 	}
 
 	/**
@@ -57,6 +73,7 @@ public abstract class Customer {
 	 */
 	public final String getCustomerType(){
 		// TO DO
+		return this.type;
 	}
 	
 	/**
@@ -66,6 +83,7 @@ public abstract class Customer {
 	 */
 	public final int getLocationX(){
 		// TO DO
+		return this.locationX;
 	}
 
 	/**
@@ -75,6 +93,7 @@ public abstract class Customer {
 	 */
 	public final int getLocationY(){
 		// TO DO
+		return this.locationY;
 	}
 
 	/**
@@ -105,4 +124,111 @@ public abstract class Customer {
 			(this.getCustomerType().equals(otherCustomer.getCustomerType())) );			
 	}
 
+	/**
+	 * check if name is correct
+	 * if true - set
+	 * else = throw CustomerException
+	 * @param name
+	 * @throws CustomerException
+	 */
+    private void setName(String name) throws CustomerException {
+        if (name.length() < 1 || name.length() > 20) {
+            throw new CustomerException("The name length " + name.length() + " isn't valid");
+        } else if (name.trim().length() == 0) {
+            throw new CustomerException("The name cannot be only white spaces.");
+        } else {
+        	this.name = name;
+		}
+
+    }
+
+	/**
+	 * check if mobileNumber is correct
+	 * if true - set
+	 * else = throw CustomerException
+	 * @param mobileNumber
+	 * @throws CustomerException
+	 */
+    private void setMobileNumber(String mobileNumber) throws CustomerException {
+        if (mobileNumber.length() != 10) {
+            throw new CustomerException("The mobile number must be 10 digits. " + mobileNumber);
+        } else if (mobileNumber.toCharArray()[0] != '0') {
+            throw new CustomerException("The mobile number must begin with ‘0’. " + mobileNumber);
+        } else {
+            for (char digit : mobileNumber.toCharArray()) {
+                if (!Character.isDigit(digit)) {
+                    throw new CustomerException("The mobile number must be 10 digits long and begin with ‘0’. " + mobileNumber);
+                }
+            }
+        }
+        this.mobileNumber = mobileNumber;
+    }
+
+	/**
+	 * check if type is correct
+	 * if true - set
+	 * else = throw CustomerException
+	 * @param type
+	 * @throws CustomerException
+	 */
+    private void setType(String type) throws CustomerException {
+        switch (type) {
+            case Constants.PICK_UP_CUSTOMER:
+				if (this.locationX != 0 || this.locationY != 0) {
+					throw new CustomerException("PickUpCustomer with locations: " + locationX + ", " + locationY + " should be 0");
+			}
+            case Constants.DRIVER_DELIVERY_CUSTOMER:
+            case Constants.DRONE_DELIVERY_CUSTOMER:
+                this.type = type;
+                break;
+            default:
+                throw new CustomerException("The type " + type + " isn't supported");
+
+        }
+    }
+
+	/**
+	 * check if locationX, locationY are correct
+	 * if true - set
+	 * else = throw CustomerException
+	 * @param locationX, locationY
+	 * @throws CustomerException
+	 */
+    private void setLocations(int locationX, int locationY) throws CustomerException {
+        if (Math.abs(locationX) > 10 || Math.abs(locationY) > 10) {
+            throw new CustomerException("The restaurant will not deliver is the customer is more than 10 blocks");
+        } else {
+            this.locationX = locationX;
+            this.locationY = locationY;
+        }
+    }
+
+	/**
+	 * @param value
+	 * @return the round value with two digits after point
+	 */
+	protected double round(double value) {
+		long factor = (long) Math.pow(10, 2);
+		value = value * factor;
+		long tmp = Math.round(value);
+		return (double) tmp / factor;
+	}
+
+	/**
+	 * getter
+	 * @return locationX field
+	 */
+	public int getRestaurantLocationX() {
+		return restaurantLocationX;
+	}
+
+	/**
+	 * getter
+	 * @return locationY field
+	 */
+	public int getRestaurantLocationY() {
+		return restaurantLocationY;
+	}
+
 }
+

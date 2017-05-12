@@ -1,6 +1,7 @@
 package asgn2Customers;
 
 import asgn2Exceptions.CustomerException;
+import constants.Constants;
 
 /** A class that represents a customer that has chosen to collect their pizza at the restaurant. 
  *  This class extends the abstract Customer class. Since the customer is at the restaurant the delivery 
@@ -27,7 +28,8 @@ public class PickUpCustomer extends Customer {
 	 * 
 	 */
 	public PickUpCustomer(String name, String mobileNumber, int locationX,  int locationY) throws CustomerException {
-		// TO DO	
+		// TO DO
+		super(name, mobileNumber, locationX, locationY, Constants.PICK_UP_CUSTOMER);
 	}
 
 	/**
@@ -38,6 +40,7 @@ public class PickUpCustomer extends Customer {
 	@Override
 	public double getDeliveryDistance() {
 		// TO DO
+		return 0;
 	}
 
 }
