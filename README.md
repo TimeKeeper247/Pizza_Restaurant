@@ -1,1 +1,2 @@
-All information relating to Assignment 2 can be found on Blackboard
+Pizza Restaurant console program
+Uses objects to represent Restaurant, Pizzas and Customers
