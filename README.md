@@ -1,2 +1,3 @@
-Pizza Restaurant console program
-Uses objects to represent Restaurant, Pizzas and Customers
+# Pizza Restaurant console program
+
+Object-Orientated representing the Restaurant, Pizzas and Customers.
